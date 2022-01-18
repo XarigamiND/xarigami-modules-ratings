@@ -60,7 +60,7 @@ function ratings_userapi_get($args)
               AND xar_itemtype = ?";
     $bindvars = array($modid, $objectid, $itemtype);
     $result = $dbconn->Execute($query, $bindvars);
-    if (!$result) return;
+    if (!$result || !$result->fields) return;
     $rating = $result->fields[0];
     $result->close();
     // Return the rating as a single number.
